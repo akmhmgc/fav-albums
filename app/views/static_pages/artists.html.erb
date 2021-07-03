@@ -4,18 +4,11 @@
 <%= form.submit 'アーティスト名検索', name: nil %>
 <% end %>
 
-
-<h1>検索結果</h1>
-<div>
+<h2>検索結果</h2>
+<main class="max-w-screen-lg mx-auto mt-10 my-12 px-4 md:px-12 relative bg-white rounded border pb-6 pt-4">
     <% if @searchartists.present? %>
-    <% @searchartists.each do |searchartist| %>
-    <div>
-        <h3><%= searchartist.name %></h3>
-        <% if searchartist.images.any?%>
-        <%image = searchartist.images[1]%>
-        <%= image_tag(image["url"])%>
-        <%end%>
+    <div class="flex flex-wrap -mx-1 lg:-mx-4">
+        <%= render partial: "artists/artist", collection: @searchartists, as: "artist"%>
     </div>
     <% end %>
-    <% end %>
-</div>
+</main>
