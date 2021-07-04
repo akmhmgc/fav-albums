@@ -1,0 +1,10 @@
+document.querySelector("#artist-<%= @artist["id"]%>").innerHTML =
+"<%= escape_javascript(render partial: 'artists/remove_from_mylist', locals: {artist: @artist} )%>";
+
+document.querySelector("#flash").innerHTML =
+"<%= escape_javascript(render partial: 'shared/flash' )%>";
+
+<%# リストへの追加 %>
+var insertHTML = "<%= escape_javascript(render partial: 'artists/new_artist', locals: {artist: @artist} )%>";
+var my_list = document.querySelector("#my_list");
+my_list.insertAdjacentHTML('beforeend', insertHTML);
