@@ -1,10 +1,6 @@
         <!-- Column -->
         <div class="my-1 px-1 w-1/3 md:w-1/4 lg:my-4 lg:px-1 lg:w-1/5 mb-10 mt-2 artist">
-            <% if artist.images.any?%>
-            <%= image_tag(artist.images[1]["url"], class: "block w-full") %>
-            <% else %>
-            <%= image_tag("no_image.png")%>
-            <% end %>
+            <%= image_tag(artist_image_url(artist), class: "block w-full") %>
             <h2 class="mt-2">
                 <%= artist.name %>
             </h2>
