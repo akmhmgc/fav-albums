@@ -15,7 +15,14 @@ class FavoriteArtistsController < ApplicationController
     end
   end
 
-  def destroy; end
+  def destroy
+    @artist = Like.find(params[:id])
+    current_user.unlike(@product)
+    respond_to do |format|
+      format.html { redirect_to current_user }
+      format.js { flash.now[:notice] = "商品がお気に入りから削除されました" }
+    end
+  end
 
   private
 

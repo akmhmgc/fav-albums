@@ -3,7 +3,7 @@
             <h2 class="mt-2">
                 <%= artist["name"] %>
             </h2>
-            <div id="mylist-<%= artist["id"] %>">
+            <div id="artist-<%= artist["id"] %>">
                 <% if included_in_mylists?(artist) %>
                 <%= render 'artists/remove_from_mylist', artist: artist %>
                 <% else %>
