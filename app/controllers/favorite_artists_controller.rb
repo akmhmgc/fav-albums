@@ -1,6 +1,7 @@
 class FavoriteArtistsController < ApplicationController
   def create
-    add_artist_to_mylist(params[:artist_hash])
+    # params[:artist_info] = {id: "5kVZa4lFUmAQlBogl1fkd6", name:"Aimyon", image_url: "https://i.scdn.co/image/ab676161"}
+    add_artist_to_mylist(params[:artist_info])
 
     respond_to do |format|
       format.html { redirect_to artists }
@@ -19,7 +20,6 @@ class FavoriteArtistsController < ApplicationController
 
   private
 
-  # artist_hash = {id: 2, artist_name: "Bz", img_url: "http://ww~"}
   def add_artist_to_mylist(artist_hash)
     session[:my_artists_list] = [] unless session[:artists]
     if session[:my_artists_list].count >= 5
