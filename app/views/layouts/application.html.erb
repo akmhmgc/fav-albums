@@ -16,6 +16,15 @@
 </head>
 
 <body class="bg-gray-50">
+  <div id="flash">
+    <%= render 'shared/flash' %>
+  </div>
+  <div>
+    <% session[:my_artists_list].each do |item| %>
+    <p><%= item["name"] %></p>
+    <%= image_tag(item["image_url"], class: "block w-full" ) %>
+    <% end %>
+  </div>
   <%= yield %>
 </body>
 

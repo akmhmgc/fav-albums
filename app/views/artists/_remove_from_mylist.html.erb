@@ -1,0 +1,8 @@
+<%= form_with(scope: :artist_info, url: favorite_artists_path, remote: true, method: :delete) do |f| %>
+<%= f.hidden_field :id, value: artist["id"] %>
+<%= f.hidden_field :name, value: artist["name"] %>
+<%= f.hidden_field :image_url, value: artist["image_url"] %>
+<%= f.button :type => "submit" do %>
+<i class='fas fa-heart' id="unlike_heart"></i>
+<% end %>
+<% end %>
