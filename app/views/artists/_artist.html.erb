@@ -4,4 +4,11 @@
             <h2 class="mt-2">
                 <%= artist.name %>
             </h2>
+            <%= form_with(url: favorite_artists_path, remote: true) do |f| %>
+            <div><%= hidden_field_tag :artist_name, artist.name %></div>
+            <div><%= hidden_field_tag :artist_image_url, artist_image_url(artist) %></div>
+            <%= f.button :type => "submit" do %>
+            <i class='far fa-heart' id="like_heart"></i>
+            <% end %>
+            <% end %>
         </div>

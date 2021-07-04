@@ -6,4 +6,9 @@ module ArtistsHelper
       "no_image.png"
     end
   end
+
+  #   アーティストがリストに追加されているかどうか
+#   def included_in_lists?(artist)
+
+#   end
 end
