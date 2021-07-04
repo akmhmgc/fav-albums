@@ -4,6 +4,16 @@
     <%= form.submit 'アーティスト名検索', name: nil %>
     <% end %>
 
+    <h2>選択されたアーティスト</h2>
+    <div class="flex flex-wrap -mx-1 lg:-mx-4">
+        <% session[:my_artists_list].each do |item| %>
+        <div class="my-1 px-1 w-1/3 md:w-1/4 lg:my-4 lg:px-1 lg:w-1/5 mb-10 mt-2 artist">
+            <%= image_tag(item["image_url"], class: "block w-full" ) %>
+            <p><%= item["name"] %></p>
+        </div>
+        <% end %>
+    </div>
+
     <h2>検索結果</h2>
     <% if @searchartists.present? %>
     <div class="flex flex-wrap -mx-1 lg:-mx-4">

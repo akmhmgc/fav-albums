@@ -35,6 +35,6 @@ class FavoriteArtistsController < ApplicationController
 
   def add_artist_to_mylist(artist_hash)
     session[:my_artists_list] << artist_hash
-    flash.now[:notice] = "アーティストが追加されました！"
+    flash.now[:notice] = "アーティストが追加されました。"
   end
 end

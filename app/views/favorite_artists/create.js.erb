@@ -1,4 +1,3 @@
-<%# likeをunlikeに変える %>
 document.querySelector("#mylist-<%= @artist["id"]%>").innerHTML =
 "<%= escape_javascript(render partial: 'artists/remove_from_mylist', locals: {artist: @artist} )%>";
 
