@@ -1,8 +1,8 @@
-<div class="my-1 px-1 w-1/3 md:w-1/4 lg:my-4 lg:px-1 lg:w-1/5 mb-10 mt-2 relative">
-    <%= image_tag(artist["image_url"], class: "block w-full" ) %>
-    <p><%= artist["name"] %></p>
+<div class="my-1 px-1 w-1/3 md:w-1/4 lg:my-4 lg:px-1 lg:w-1/5 mb-10 mt-2 relative" id="my-artist-<%= artist["id"] %>">
     <%= form_with(scope: :artist_info, url: favorite_artist_path(artist["id"]), remote: true, method: :delete) do |f| %>
     <%= f.button :type => "submit" do %>
+    <%= image_tag(artist["image_url"], class: "block w-full" ) %>
+    <p><%= artist["name"] %></p>
     <i class='far fa-minus-square fa-3x text-gray-500 absolute top-1 left-2' id="unlike_heart"></i>
     <% end %>
     <% end %>
