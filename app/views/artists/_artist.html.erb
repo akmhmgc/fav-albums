@@ -1,5 +1,5 @@
-        <div class="my-1 px-1 w-1/3 md:w-1/4 lg:my-4 lg:px-1 lg:w-1/5 mb-10 mt-2 artist">
-            <div id="image-<%= artist["id"] %>" class= "<%= "opacity-20" if included_in_mylists?(artist)%>">
+        <div class="my-1 px-1 w-1/3 md:w-1/4 lg:my-4 lg:px-1 lg:w-1/5 mb-10 mt-2 artist relative">
+            <div id="image-<%= artist["id"] %>" class="<%= "opacity-20" if included_in_mylists?(artist)%>">
                 <%= image_tag(artist["image_url"], class: "block w-full") %>
             </div>
             <h2 class="mt-2">
