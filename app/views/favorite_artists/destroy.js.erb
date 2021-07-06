@@ -3,8 +3,14 @@ document.querySelector("#my-artist-<%= @artist["id"]%>").remove();
 
 // 一覧に削除されたアーティストが存在する場合、透過率を戻す＋ リストに追加可能な状態にする
 var deletedArtist = document.querySelector("#artist-<%= @artist["id"]%>");
+var deletedArtistImage = document.querySelector("#image-<%= @artist["id"]%>");
 
+if (deletedArtist !=null) {
+    var insertHTML = "<%= escape_javascript(render partial: 'artists/add_to_mylist', locals: {artist: @artist} ) %>";
+    deletedArtist.insertAdjacentHTML('beforeend', insertHTML);
+    deletedArtistImage.classList.remove("opacity-20");
+}
 
-<%# フラッシュの表示 %>
+// フラッシュの表示
 document.querySelector("#flash").innerHTML =
 "<%= escape_javascript(render partial: 'shared/flash' )%>";
