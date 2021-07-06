@@ -1,2 +1,10 @@
-<h1>FavoriteArtists#destroy</h1>
-<p>Find me in app/views/favorite_artists/destroy.html.erb</p>
+// リストからの削除
+document.querySelector("#my-artist-<%= @artist["id"]%>").delete
+
+// 一覧に削除されたアーティストが存在する場合、透過率を戻す＋ リストに追加可能な状態にする
+var deletedArtist = document.querySelector("#artist-<%= @artist["id"]%>");
+
+
+<%# フラッシュの表示 %>
+document.querySelector("#flash").innerHTML =
+"<%= escape_javascript(render partial: 'shared/flash' )%>";

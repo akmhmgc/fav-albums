@@ -1,6 +1,5 @@
 class FavoriteArtistsController < ApplicationController
-  require 'active_support'
-  require 'active_support/core_ext'
+  include SpotifyModule
   def create
     # params[:artist_info] = {id: "5kVZa4lFUmAQlBogl1fkd6", name:"Aimyon", image_url: "https://i.scdn.co/image/ab676161"}
     @artist = params.require(:artist_info).permit(:id, :name, :image_url).to_h.with_indifferent_access
@@ -15,8 +14,9 @@ class FavoriteArtistsController < ApplicationController
   end
 
   def destroy
-    @artist_id = params[:id]
-    if delete_artist_from_mylist(@artist_id)
+    artist_instance = RSpotify::Artist.find(params[:id])
+    @artist = spotify_to_hash(artist_instance)
+    if delete_artist_from_mylist(@artist)
       respond_to do |format|
         format.html { redirect_to artists, flash[:notice] = "アーティストが削除されました。" }
         format.js { flash.now[:notice] = "アーティストが削除されました。" }
@@ -43,7 +43,7 @@ class FavoriteArtistsController < ApplicationController
     end
   end
 
-  def delete_artist_from_mylist(artist_id)
-    session[:my_artists_list].delete_if { |artist_hash| artist_hash["id"] == artist_id }
+  def delete_artist_from_mylist(artist_hash)
+    session[:my_artists_list].delete_if { |hash| hash["id"] == artist_hash["id"] }
   end
 end
