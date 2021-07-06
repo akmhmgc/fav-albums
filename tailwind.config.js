@@ -6,7 +6,7 @@ module.exports = {
       './app/helpers/**/*.rb'
     ],
     options: {
-      safelist: ['a'],
+      safelist: ['a','opacity-20'],
       keyframes: true,
       fontFace: true,
     },
