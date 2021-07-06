@@ -16,11 +16,11 @@ class FavoriteArtistsController < ApplicationController
   end
 
   def destroy
-    @artist = Like.find(params[:id])
-    current_user.unlike(@product)
+    @artist_id = params[:id]
+    delete_artist_from_mylist(@artist_id)
     respond_to do |format|
-      format.html { redirect_to current_user }
-      format.js { flash.now[:notice] = "商品がお気に入りから削除されました" }
+      format.html { redirect_to artists }
+      format.js
     end
   end
 
@@ -43,5 +43,11 @@ class FavoriteArtistsController < ApplicationController
   def add_artist_to_mylist(artist_hash)
     session[:my_artists_list] << artist_hash
     flash.now[:notice] = "アーティストが追加されました。"
+  end
+
+  def delete_artist_from_mylist(artist_id)
+    session[:my_artists_list].delete_if{|artist_hash| artist_hash["id"] == artist_id }
+    flash.now[:notice] = "アーティストが削除されました,
+    "
   end
 end
