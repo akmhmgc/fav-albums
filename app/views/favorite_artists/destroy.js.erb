@@ -1,5 +1,5 @@
 // リストからの削除
-document.querySelector("#my-artist-<%= @artist["id"]%>").delete
+document.querySelector("#my-artist-<%= @artist["id"]%>").remove();
 
 // 一覧に削除されたアーティストが存在する場合、透過率を戻す＋ リストに追加可能な状態にする
 var deletedArtist = document.querySelector("#artist-<%= @artist["id"]%>");
