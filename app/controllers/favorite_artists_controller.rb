@@ -30,10 +30,10 @@ class FavoriteArtistsController < ApplicationController
     session[:my_artists_list] = [] and return unless session[:my_artists_list]
 
     if session[:my_artists_list].count >= 5
-      flash.now[:alart] = "追加するためには現在のリストからアーティストを１組削除してください。"
+      flash[:alert] = "追加するためにはリストからアーティストを１組削除してください。"
       false
     elsif session[:my_artists_list].include?(artist_hash)
-      flash.now[:alart] = "既にアーティストは追加されています。"
+      flash[:alert] = "既にアーティストは追加されています。"
       false
     else
       true
