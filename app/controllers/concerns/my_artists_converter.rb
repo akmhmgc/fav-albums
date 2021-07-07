@@ -17,12 +17,30 @@ module MyArtistsConverter
 
   private
 
-  def save_image_from_mylist(name, images_list)
-    @image = MiniMagick::Image.open("app/assets/images/bg.jpg")
-    @image_width = (@image.width - BORDER_WIDTH * 8) / 5
-    add_name_title(name)
-    add_artists(images_list)
-    @image.write "app/assets/images/output.jpg"
+  def can_save_image_from_mylist?(name, images_list,file_path)
+    # 名前が10文字以内かどうか
+    unless name.length >= 1 && name.length <= 10
+      @error = "ニックネームの文字数が正しくありません。"
+      false
+    end
+
+    # 名前が10文字以内かどうか
+    unless images_list.length == 5
+      @error = "アーティストの数が正しくありません。"
+      false
+    end
+
+    begin
+      @image = MiniMagick::Image.open("app/assets/images/bg.jpg")
+      @image_width = (@image.width - BORDER_WIDTH * 8) / 5
+      add_name_title(name)
+      add_artists(images_list)
+      @image.write "app/assets/images/#{image_hash}.jpg"
+      true
+    rescue StandardError
+      @error = "画像の作成に失敗しました。"
+      false
+    end
   end
 
   def add_name_title(name)

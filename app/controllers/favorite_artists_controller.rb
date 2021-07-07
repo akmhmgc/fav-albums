@@ -25,8 +25,17 @@ class FavoriteArtistsController < ApplicationController
   end
 
   def render_image
-    image_urls = session[:my_artists_list].map{|artist| artist["image_url"]}
-    save_image_from_mylist("テスト", image_urls)
+    image_urls = session[:my_artists_list].map { |artist| artist["image_url"] }
+    artist_names = session[:my_artists_list].map { |artist| artist["name"] }
+    
+    if save_image_from_mylist("テスト", image_urls, @hash) && save_artist_names(artist_names,@hash)
+
+      # 生成されたURL、アーティスト名の保存
+      @image.write "app/assets/images/output.jpg"
+      # 画像ページに移動する
+    else
+      edirect_to artists_path, flash: { alert: @error }
+    end
   end
 
   private
@@ -48,5 +57,12 @@ class FavoriteArtistsController < ApplicationController
 
   def delete_artist_from_mylist(artist_hash)
     session[:my_artists_list].delete_if { |hash| hash["id"] == artist_hash["id"] }
+  end
+
+  def save_artist_names(names_array)
+    return true if names_array.length == 5
+
+    @error = "アーティスト名が正しく取得されていません。"
+    false
   end
 end
