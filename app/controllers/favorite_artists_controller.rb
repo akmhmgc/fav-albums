@@ -1,4 +1,5 @@
 class FavoriteArtistsController < ApplicationController
+  include MyArtistsConverter
   def create
     @artist = params.require(:artist_info).permit(:id, :name, :image_url).to_h.with_indifferent_access
     if add_artist_to_mylist(@artist)
@@ -21,6 +22,11 @@ class FavoriteArtistsController < ApplicationController
     else
       redirect_to artists_path, flash: { alert: "アーティストの削除に失敗しました。" }
     end
+  end
+
+  def mylist_image
+    image_urls = session[:my_artists_list].map{|artist| artist["image_url"]}
+    save_image_from_mylist("テスト", image_urls)
   end
 
   private
