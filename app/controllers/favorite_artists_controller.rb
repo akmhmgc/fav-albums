@@ -1,5 +1,5 @@
 class FavoriteArtistsController < ApplicationController
-  include MyArtistsConverter
+  include MyArtistsConverte
   def create
     @artist = params.require(:artist_info).permit(:id, :name, :image_url).to_h.with_indifferent_access
     if add_artist_to_mylist(@artist)
@@ -25,16 +25,23 @@ class FavoriteArtistsController < ApplicationController
   end
 
   def render_image
+    name = params[:name]
     image_urls = session[:my_artists_list].map { |artist| artist["image_url"] }
     artist_names = session[:my_artists_list].map { |artist| artist["name"] }
-    
-    if save_image_from_mylist("テスト", image_urls, @hash) && save_artist_names(artist_names,@hash)
 
-      # 生成されたURL、アーティスト名の保存
-      @image.write "app/assets/images/output.jpg"
-      # 画像ページに移動する
+    if can_save_image_from_mylist?(name, image_urls) && can_save_artist_names?(artist_names)
+      @my_list = MyList.create!
+      @uid = @my_list.to_param
+      @image.write "app/assets/images/#{@uid}.jpg"
+
+      artist_names.each do |artist_name|
+        @my_list.artists.create!(name: artist_name)
+      end
+
+      session[:my_artists_list].clear
+      redirect_to myFavArtistList_path(@uid), flash: { notice: "画像が作成されました！" }
     else
-      edirect_to artists_path, flash: { alert: @error }
+      redirect_to myFavArtistLists_path, flash: { alert: @error }
     end
   end
 
@@ -59,7 +66,7 @@ class FavoriteArtistsController < ApplicationController
     session[:my_artists_list].delete_if { |hash| hash["id"] == artist_hash["id"] }
   end
 
-  def save_artist_names(names_array)
+  def can_save_artist_names?(names_array)
     return true if names_array.length == 5
 
     @error = "アーティスト名が正しく取得されていません。"

@@ -17,17 +17,17 @@ module MyArtistsConverter
 
   private
 
-  def can_save_image_from_mylist?(name, images_list,file_path)
+  def can_save_image_from_mylist?(name, images_list)
     # 名前が10文字以内かどうか
-    unless name.length >= 1 && name.length <= 10
+    unless name && name.length >= 1 && name.length <= 10
       @error = "ニックネームの文字数が正しくありません。"
-      false
+      return false
     end
 
     # 名前が10文字以内かどうか
     unless images_list.length == 5
       @error = "アーティストの数が正しくありません。"
-      false
+      return false
     end
 
     begin
@@ -35,7 +35,6 @@ module MyArtistsConverter
       @image_width = (@image.width - BORDER_WIDTH * 8) / 5
       add_name_title(name)
       add_artists(images_list)
-      @image.write "app/assets/images/#{image_hash}.jpg"
       true
     rescue StandardError
       @error = "画像の作成に失敗しました。"
