@@ -12,7 +12,8 @@ class ArtistsController < ApplicationController
 
   def show
     my_list = MyList.find_by(public_uid: params[:id])
-    @artists = my_list.artists
+    artists = my_list.artists.map(&:name).join("・")
+    @description = "#{my_list.nickname}さんを構成するアーティストは#{artists}です。"
     @image_name = "#{params[:id]}.jpg"
   end
 end
