@@ -1,5 +1,5 @@
 class FavoriteArtistsController < ApplicationController
-  include MyArtistsConverte
+  include MyArtistsConverter
   def create
     @artist = params.require(:artist_info).permit(:id, :name, :image_url).to_h.with_indifferent_access
     if add_artist_to_mylist(@artist)
@@ -30,7 +30,7 @@ class FavoriteArtistsController < ApplicationController
     artist_names = session[:my_artists_list].map { |artist| artist["name"] }
 
     if can_save_image_from_mylist?(name, image_urls) && can_save_artist_names?(artist_names)
-      @my_list = MyList.create!
+      @my_list = MyList.create!(nickname: name)
       @uid = @my_list.to_param
       @image.write "app/assets/images/#{@uid}.jpg"
 
