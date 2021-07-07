@@ -24,7 +24,7 @@ class FavoriteArtistsController < ApplicationController
     end
   end
 
-  def mylist_image
+  def render_image
     image_urls = session[:my_artists_list].map{|artist| artist["image_url"]}
     save_image_from_mylist("テスト", image_urls)
   end
