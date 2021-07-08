@@ -1,6 +1,9 @@
 module ApplicationHelper
   def page_title
-    title = "#{@page_title}|"
-    "#{title}MyFavotriteItems"
+    if @page_title
+      "#{@page_title}|MyFavotriteItems"
+    else
+      "MyFavotriteItems"
+    end
   end
 end
