@@ -2,7 +2,7 @@
             <div id="image-<%= artist["id"] %>" class="<%= "opacity-20" if included_in_mylists?(artist)%>">
                 <%= image_tag(artist["image_url"], class: "block w-full") %>
             </div>
-            <h2 class="mt-2">
+            <h2 class="mt-2 break-words">
                 <%= artist["name"] %>
             </h2>
             <div id="artist-<%= artist["id"] %>">
