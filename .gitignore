@@ -44,3 +44,4 @@ yarn-debug.log*
 !bg.jpg
 !no_image.png
 
+/public/uploads/*

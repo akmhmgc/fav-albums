@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_07_144518) do
+ActiveRecord::Schema.define(version: 2021_07_10_140332) do
 
   create_table "artists", force: :cascade do |t|
     t.string "name"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 2021_07_07_144518) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "nickname", limit: 10, null: false
+    t.string "image"
     t.index ["public_uid"], name: "index_my_lists_on_public_uid", unique: true
   end
 

@@ -30,9 +30,8 @@ class FavoriteArtistsController < ApplicationController
     artist_names = session[:my_artists_list].map { |artist| artist["name"] }
 
     if can_save_image_from_mylist?(name, image_urls) && can_save_artist_names?(artist_names)
-      @my_list = MyList.create!(nickname: name)
+      @my_list = MyList.create!(nickname: name, image: @image)
       @uid = @my_list.to_param
-      @image.write "app/assets/images/#{@uid}.jpg"
 
       artist_names.each do |artist_name|
         @my_list.artists.create!(name: artist_name)
