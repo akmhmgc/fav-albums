@@ -40,7 +40,7 @@
 yarn-debug.log*
 .yarn-integrity
 
- /app/assets/images/*
- !bg.jpg
- !no_image.png
+/app/assets/images/*
+!bg.jpg
+!no_image.png
 
