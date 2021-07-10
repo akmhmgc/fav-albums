@@ -5,13 +5,15 @@
     </div>
     <div>
         <%= @description %>
+        <% if @description_twitter %>
         <div class="text-center mt-5">
             <%= link_to "https://twitter.com/intent/tweet?text=#{@description_twitter}", target: :_blank, rel: "noopener noreferrer" ,class:"text-white text-sm font-bold md:text-lg" do%>
-            <div class="py-3 px-5 rounded w-72 mx-auto", id="twitter_btn">
+            <div class="py-3 px-5 rounded w-72 mx-auto" , id="twitter_btn">
                 <i class="fab fa-2x fa-twitter align-middle"></i>
                 <span class="px-3">Twitterにシェア</span>
             </div>
             <% end %>
         </div>
+        <% end %>
     </div>
 </main>
