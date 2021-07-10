@@ -4,7 +4,7 @@ class FavoriteArtistsController < ApplicationController
     @artist = params.require(:artist_info).permit(:id, :name, :image_url).to_h.with_indifferent_access
     if add_artist_to_mylist(@artist)
       respond_to do |format|
-        format.html { redirect_to artists, flash[:notice] = "アーティストが追加されました。" }
+        format.html { redirect_to myFavArtistLists_path, flash[:notice] = "アーティストが追加されました。" }
         format.js { flash.now[:notice] = "アーティストが追加されました。" }
       end
     else
