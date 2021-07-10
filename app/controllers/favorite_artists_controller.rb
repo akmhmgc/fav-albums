@@ -69,6 +69,7 @@ class FavoriteArtistsController < ApplicationController
     return true if names_array.length == 5
 
     @error = "アーティスト名が正しく取得されていません。"
+    
     false
   end
 end
