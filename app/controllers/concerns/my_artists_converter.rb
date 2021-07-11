@@ -39,7 +39,8 @@ module MyArtistsConverter
   def add_name_title(name)
     @image.combine_options do |config|
       Rails.logger.info(name.encoding)
-
+      Rails.logger.info("text".encoding)
+      Rails.logger.info("#{name.force_encoding('UTF-8')}さんを".encoding)
       # nickname
       config.font NAME_FONT
       config.gravity GRAVITY
