@@ -12,12 +12,8 @@ module SpotifyModule
   private
 
   def spotify_to_hash(spotify_instance)
-    image_url = if spotify_instance.images.any?
-                  spotify_instance.images[1]["url"]
-                else
-                  "no_image.png"
-                end
+    return unless spotify_instance.images.any?
 
-    { "id": spotify_instance.id, "name": spotify_instance.name, "image_url": image_url }.with_indifferent_access
+    { "id": spotify_instance.id, "name": spotify_instance.name, "image_url": spotify_instance.images[1]["url"] }.with_indifferent_access
   end
 end
