@@ -48,7 +48,8 @@ module MyArtistsConverter
       # title
       config.font TITLE_FONT
       config.pointsize TITLE_FONT_SIZE
-      config.draw "text #{TITLE_POSITION} 構成する５組のアーティスト"
+      sentence2 = "構成する５組のアーティスト".force_encoding('UTF-8')
+      config.draw "text #{TITLE_POSITION} '#{sentence2}'"
     end
   end
 
