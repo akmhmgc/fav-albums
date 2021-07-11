@@ -42,8 +42,8 @@ module MyArtistsConverter
       config.font NAME_FONT
       config.gravity GRAVITY
       config.pointsize NAME_FONT_SIZE
-      sentence1 = "#{name}さんを".force_encoding('UTF-8')
-      config.draw "text #{NAME_POSITION} #{sentence1}"
+      # sentence1 = "#{name}さんを".force_encoding('UTF-8')
+      config.draw "text #{NAME_POSITION} #{name}"
 
       # title
       # config.font TITLE_FONT
