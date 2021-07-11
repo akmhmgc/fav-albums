@@ -18,7 +18,7 @@ class ArtistsController < ApplicationController
 
     @description_twitter = <<~MSG
       #{@my_list.nickname}さんを構成するアーティストは%0a#{artists_list.join('%0a')}です。%0a
-      @Buffalo_G_7777 %20%23私を構成する5組のアーティスト%20 #{myFavArtistLists_url}
+      @Buffalo_G_7777 %20%23私を構成する5組のアーティスト%20 #{myFavArtistList_url(@my_list.to_param)}
     MSG
   end
 end
