@@ -2,6 +2,15 @@
 <html>
 
 <head>
+  <!-- ogp -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:site" content="@Buffalo_G_7777" />
+  <meta property="og:title" content="<%= page_title %>" />
+  <meta property="og:url" content="<%= request.url %>" />
+  <meta property="og:description"
+    content="<%= page_title %>" />
+  <meta property="og:image"
+    content="<%= content_for?(:image_url) ? yield(:image_url) : 'https://my-fav-artists.s3.amazonaws.com/uploads/my_list/image/20/mini_magick20210711-4-1n653t9.jpeg' %>" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= page_title %></title>
   <%= csrf_meta_tags %>
