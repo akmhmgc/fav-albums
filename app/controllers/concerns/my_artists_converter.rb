@@ -48,12 +48,13 @@ module MyArtistsConverter
       config.font NAME_FONT
       config.gravity GRAVITY
       config.pointsize NAME_FONT_SIZE
-      config.draw "text #{NAME_POSITION} '#{name.force_encoding('UTF-8')}さんを'"
+      # config.draw "text #{NAME_POSITION} '#{name.force_encoding('UTF-8')}さんを'"
+      config.draw "text #{NAME_POSITION} 'テキストサンプル'"
 
       # title
-      config.font TITLE_FONT
-      config.pointsize TITLE_FONT_SIZE
-      config.draw "text #{TITLE_POSITION} 構成する５組のアーティスト"
+      # config.font TITLE_FONT
+      # config.pointsize TITLE_FONT_SIZE
+      # config.draw "text #{TITLE_POSITION} 構成する５組のアーティスト"
     end
   end
 
