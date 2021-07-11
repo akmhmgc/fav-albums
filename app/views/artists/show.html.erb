@@ -7,14 +7,24 @@
         <%= @description %>
         <% if flash[:notice] %>
         <div class="text-center mt-5">
-            <#%= link_to "https://twitter.com/intent/tweet?text=#{@description_twitter}", target: :_blank, rel: "noopener noreferrer" ,class:"text-white text-sm font-bold inline-block md:text-lg" do%>
-            <%= link_to "https://twitter.com/intent/tweet?text=#{@description_twitter}" ,class:"text-white text-sm font-bold inline-block md:text-lg" do%>
+            <%= link_to "https://twitter.com/intent/tweet?text=#{@description_twitter}", target: :_blank, rel: "noopener noreferrer" ,class:"text-white text-sm font-bold inline-block md:text-lg" do%>
             <div class="py-3 px-5 rounded w-72 mx-auto" , id="twitter_btn">
                 <i class="fab fa-2x fa-twitter align-middle"></i>
                 <span class="px-3">Twitterにシェア</span>
             </div>
             <% end %>
         </div>
+
+        <%= link_to "yahoo", "#" %>
+        <%= link_to "twitter", "https://twitter.com/intent/tweet?text=#{@description_twitter}" %>
+        <%= link_to "twitter", "https://twitter.com/intent/tweet?text=#{@description_twitter}" , target: :_blank, rel: "noopener noreferrer"%>
+        
+        <%= link_to "https://twitter.com/intent/tweet?text=#{@description_twitter}", target: :_blank, rel: "noopener noreferrer" ,class:"text-white text-sm font-bold inline-block md:text-lg" do%>
+        <div class="py-3 px-5 rounded w-72 mx-auto" , id="twitter_btn">
+            <span class="px-3">Twitterにシェア</span>
+        </div>
+        <% end %>
+
         <% end %>
         <div class="text-center mt-10">
             <%= link_to "あなたもアーティストを選んでみる" ,myFavArtistLists_path ,class:"bg-red-300 text-white text-sm font-bold py-3 px-5 rounded md:text-lg"%>
