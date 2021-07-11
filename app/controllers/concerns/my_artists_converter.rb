@@ -30,16 +30,10 @@ module MyArtistsConverter
       return false
     end
 
-    begin
-      @image = MiniMagick::Image.open("app/assets/images/bg.jpg")
-      @image_width = (@image.width - BORDER_WIDTH * 8) / 5
-      add_name_title(name)
-      add_artists(images_list)
-      true
-    rescue StandardError
-      @error = "画像の作成に失敗しました。"
-      false
-    end
+    @image = MiniMagick::Image.open("app/assets/images/bg.jpg")
+    @image_width = (@image.width - BORDER_WIDTH * 8) / 5
+    add_name_title(name)
+    add_artists(images_list)
   end
 
   def add_name_title(name)
