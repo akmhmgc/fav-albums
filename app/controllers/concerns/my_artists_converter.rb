@@ -43,18 +43,12 @@ module MyArtistsConverter
       config.gravity GRAVITY
       config.pointsize NAME_FONT_SIZE
       sentence1 = name + "さんを".force_encoding('UTF-8')
-      Rails.logger.info(sentence1)
-      Rails.logger.info(name.encoding)
-      Rails.logger.info("さんを".encoding)
-      Rails.logger.info("さんを".force_encoding('UTF-8').encoding)
-      Rails.logger.info(sentence1.encoding)
-
       config.draw "text #{NAME_POSITION} '#{sentence1}'"
 
       # title
-      # config.font TITLE_FONT
-      # config.pointsize TITLE_FONT_SIZE
-      # config.draw "text #{TITLE_POSITION} 構成する５組のアーティスト"
+      config.font TITLE_FONT
+      config.pointsize TITLE_FONT_SIZE
+      config.draw "text #{TITLE_POSITION} 構成する５組のアーティスト"
     end
   end
 
