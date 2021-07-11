@@ -7,26 +7,21 @@
         <%= @description %>
         <% if flash[:notice] %>
         <div class="text-center mt-5">
-            <%= link_to "https://twitter.com/intent/tweet?text=#{@description_twitter}", target: :_blank, rel: "noopener noreferrer" ,class:"text-white text-sm font-bold inline-block md:text-lg" do%>
-            <div class="py-3 px-5 rounded w-72 mx-auto" , id="twitter_btn">
+            <div class="py-3 px-5 rounded w-72 mx-auto text-white text-sm font-bold inline-block md:text-lg" ,
+                id="twitter_btn">
                 <i class="fab fa-2x fa-twitter align-middle"></i>
                 <span class="px-3">Twitterにシェア</span>
             </div>
-            <% end %>
         </div>
-
-        <%= link_to "yahoo", "#" %>
-        <%= link_to "twitter", "https://twitter.com/intent/tweet?text=#{@description_twitter}" %>
-        <%= link_to "twitter hello", "https://twitter.com/intent/tweet?text=hello" %>
-        <%= link_to "twitter not query", "https://twitter.com/intent/tweet" %>
-        <%= link_to "twitter not query", "https://twitter.com/intent/tweet" %>
-        <%= link_to "google", "https://www.google.com/" , target: :_blank, rel: "noopener noreferrer"%>
-         <%= link_to "ある", "https://twitter.com/intent/tweet?text=%E3%81%9E%E3%82%8D%E3%81%95%E3%82%93%E3%82%92%E6%A7%8B%E6%88%90%E3%81%99%E3%82%8B5%E3%81%A4%E3%81%AE%E3%83%9E%E3%83%B3%E3%82%AC%E3%81%AF%0AONE%20PIECE%0AONE%20PIECE%0AONE%20PIECE%0A%E3%83%AF%E3%83%B3%E3%83%91%E3%83%B3%E3%83%9E%E3%83%B3%0AONE%20PIECE%0A%E3%81%A7%E3%81%97%E3%81%9F%EF%BC%81%20%23%E7%A7%81%E3%82%92%E6%A7%8B%E6%88%90%E3%81%99%E3%82%8B5%E3%81%A4%E3%81%AE%E3%83%9E%E3%83%B3%E3%82%AC%20%40alu_inc%20%E3%82%88%E3%82%8A&url=https%3A%2F%2Falu.jp%2FelementsOfMe%2FtG5IPnWNoxZGXKsnCWGq%3Futm_source%3Do_twitter" , target: :_blank, rel: "noopener noreferrer"%>
-        
-
         <% end %>
         <div class="text-center mt-10">
             <%= link_to "あなたもアーティストを選んでみる" ,myFavArtistLists_path ,class:"bg-red-300 text-white text-sm font-bold py-3 px-5 rounded md:text-lg"%>
         </div>
     </div>
 </main>
+
+<script>
+    document.getElementById("twitter_btn").onclick = function () {
+        window.open("https://twitter.com/intent/tweet?text=#{@description_twitter}");
+    };
+</script>
