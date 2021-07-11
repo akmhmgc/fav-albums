@@ -5,7 +5,7 @@
     </div>
     <div>
         <%= @description %>
-        <% if flash[:notice] %>
+        <% if @description_twitter %>
         <div class="text-center mt-5">
             <div class="py-3 px-5 rounded w-72 mx-auto text-white text-sm font-bold inline-block md:text-lg" ,
                 id="twitter_btn">
@@ -20,8 +20,10 @@
     </div>
 </main>
 
+<% if @description_twitter %>
 <script>
     document.getElementById("twitter_btn").onclick = function () {
-        window.open("https://twitter.com/intent/tweet?text=#{@description_twitter}");
+        window.open("https://twitter.com/intent/tweet?text=<%= @description_twitter.html_safe%>");
     };
 </script>
+<% end %>
