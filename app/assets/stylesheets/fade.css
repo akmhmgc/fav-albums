@@ -3,13 +3,15 @@
   animation-timing-function: ease-in;
   animation-duration: 1s;
   animation-fill-mode: forwards;
-  animation-delay: 2s;
+  animation-delay: 1s;
 }
 
 @keyframes fadeOut {
 
-  0% {opacity: 1} 
+  0% {opacity: 1;
+    visibility: visible;} 
 
-  100% {opacity: 0} 
+  100% {opacity: 0;
+    visibility: hidden;} 
 
 }
