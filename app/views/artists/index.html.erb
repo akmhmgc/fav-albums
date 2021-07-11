@@ -1,24 +1,25 @@
-<main class="max-w-screen-lg mx-auto mt-10 my-12 px-4 md:px-12 relative pb-6 pt-4">
-    <div class="search_form">
+<main class="max-w-screen-lg mx-auto px-4 md:px-12 relative pb-6 pt-4">
+    <h2 class="text-xl">好きなアーティストを5組選びましょう！</h2>
+    <div class="search_form my-2">
         <%= form_with url: myFavArtistLists_path, method: :get, local: true do |form| %>
-        <%= form.text_field :search %>
-        <%= form.submit 'アーティスト名検索', name: nil %>
+        <%= form.text_field :search ,size:20 ,placeholder: "吉幾三",class:"p-1 border-2 border-gray-400 mt-3"%>
+        <%= form.submit 'アーティスト名検索', name: nil,class:"px-2 py-1 border-1 rounded-md bg-red-400 text-white mx-5"%>
         <% end %>
     </div>
 
-    <div>
-        <p>アーティストを5組選びましょう！</p>
+    <div class="border-2 rounded-md  p-5 mb-5">
         <div class="flex flex-wrap -mx-1 lg:-mx-4" id="my_list">
             <%= render partial: "artists/added_artist", collection: session[:my_artists_list], as: "artist"%>
         </div>
 
         <%= form_with url: render_image_favorite_artists_path, method: :post, local: true do |form| %>
-        <%= form.label :"あなたのニックネーム", class:"block text-sm font-bold mb-1"%>
-        <%= form.text_field :name %>
-        <%= form.submit 'オリジナル画像を作成する', name: nil%>
+        <%= form.text_field :name ,size:25, placeholder: "ニックネーム（10文字以内）",class:"p-1 border-2 border-gray-400 mt-3"%>
+        <br>
+        <div class="text-center">
+            <%= form.submit 'オリジナル画像を作成する', name: nil, class:"px-4 py-3 border-1 rounded-md bg-green-400 text-white mt-10"%>
+        </div>
         <% end %>
     </div>
-    <h2>検索結果</h2>
     <% if @searchartists.present? %>
     <div class="flex flex-wrap -mx-1 lg:-mx-4">
         <%= render partial: "artists/artist", collection: @searchartists, as: "artist"%>
