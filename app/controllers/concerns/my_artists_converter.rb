@@ -38,17 +38,11 @@ module MyArtistsConverter
 
   def add_name_title(name)
     @image.combine_options do |config|
-      Rails.logger.info("text #{NAME_POSITION} '#{name}さんを'")
-      Rails.logger.info("text #{NAME_POSITION} '#{name.force_encoding('UTF-8')}さんを'")
-
-      Rails.logger.info(NAME_FONT.encoding)
-      Rails.logger.info(GRAVITY.encoding)
-
       # nickname
       config.font NAME_FONT
       config.gravity GRAVITY
       config.pointsize NAME_FONT_SIZE
-      sentence1 = "#{name}さんを"
+      sentence1 = "#{name}さんを".force_encoding('UTF-8')
       config.draw "text #{NAME_POSITION} #{sentence1}"
 
       # title
