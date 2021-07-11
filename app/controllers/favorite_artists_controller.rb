@@ -48,7 +48,8 @@ class FavoriteArtistsController < ApplicationController
 
   # フラッシュメッセージの場所は関数の内側に持ってきていいのか？
   def add_artist_to_mylist(artist_hash)
-    session[:my_artists_list] = [] and return unless session[:my_artists_list]
+    # session[:my_artists_list]が存在しない場合、空の配列を代入
+    session[:my_artists_list] = [] unless session[:my_artists_list]
 
     if session[:my_artists_list].count >= 5
       @error_msg = "追加するためにはリストからアーティストを１組削除してください。"
@@ -69,7 +70,7 @@ class FavoriteArtistsController < ApplicationController
     return true if names_array.length == 5
 
     @error = "アーティスト名が正しく取得されていません。"
-    
+
     false
   end
 end
