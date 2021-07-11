@@ -13,10 +13,11 @@
                 <span class="px-3">Twitterにシェア</span>
             </div>
         </div>
-        <% end %>
+        <% else %>
         <div class="text-center mt-10">
-            <%= link_to "あなたもアーティストを選んでみる" ,myFavArtistLists_path ,class:"bg-red-300 text-white text-sm font-bold py-3 px-5 rounded md:text-lg"%>
+            <%= link_to "アーティストを選んでみる！" ,myFavArtistLists_path ,class:"bg-pink-400 text-white text-sm font-bold py-4 px-6 rounded md:text-lg"%>
         </div>
+        <% end %>
     </div>
 </main>
 
