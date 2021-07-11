@@ -5,7 +5,7 @@
     </div>
     <div>
         <%= @description %>
-        <% if @description_twitter %>
+        <% if flash[:notice] %>
         <div class="text-center mt-5">
             <%= link_to "https://twitter.com/intent/tweet?text=#{@description_twitter}", target: :_blank, rel: "noopener noreferrer" ,class:"text-white text-sm font-bold md:text-lg" do%>
             <div class="py-3 px-5 rounded w-72 mx-auto" , id="twitter_btn">
@@ -18,8 +18,5 @@
         <div class="text-center mt-10">
             <%= link_to "あなたもアーティストを選んでみる" ,myFavArtistLists_path ,class:"bg-red-300 text-white text-sm font-bold py-3 px-5 rounded md:text-lg"%>
         </div>
-        <% if flash[:notice] %>
-        <p>フラッシュが存在します</p>
-        <% end %>
     </div>
 </main> 
