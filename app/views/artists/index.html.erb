@@ -5,7 +5,7 @@
         <div class="text-center mb-3">
             <%= form.text_field :search ,size:25 ,placeholder: "吉幾三",class:"p-1 border-2 border-gray-400 mt-3 mb-5"%>
             <br>
-            <%= form.submit 'アーティスト名検索', name: nil,class:"px-4 py-3 border-1 rounded-md bg-red-400 text-white"%>
+            <%= form.button 'アーティスト名検索', name: nil,class:"px-4 py-3 border-1 rounded-md bg-red-400 text-white", type: 'button', onclick: 'submit();' %>
         </div>
         <% end %>
     </div>
@@ -19,11 +19,13 @@
         <br>
         <div class="text-center">
             <%= form.text_field :name ,size:25, placeholder: "ニックネーム（10文字以内）",class:"p-1 border-2 border-gray-400 mt-3"%>
-            <%= form.submit 'オリジナル画像を作成する', name: nil, class:"px-4 py-3 border-1 rounded-md bg-green-400 text-white mt-5"%>
+            <br>
+            <%= form.button 'オリジナル画像を作成する', name: nil,class:"px-4 py-3 border-1 rounded-md bg-green-400 text-white mt-5", type: 'button', onclick: 'submit();' %>
         </div>
         <% end %>
     </div>
     <% if @searchartists.present? %>
+    <h2 class="text-xl text-center font-semibold">+を押してアーティストを追加してください</h2>
     <div class="flex flex-wrap -mx-1 lg:-mx-4">
         <%= render partial: "artists/artist", collection: @searchartists, as: "artist"%>
     </div>
