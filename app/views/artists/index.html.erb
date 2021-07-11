@@ -24,6 +24,7 @@
         <% end %>
     </div>
     <% if @searchartists.present? %>
+    <h2 class="text-xl text-center font-semibold">+を押してアーティストを追加してください</h2>
     <div class="flex flex-wrap -mx-1 lg:-mx-4">
         <%= render partial: "artists/artist", collection: @searchartists, as: "artist"%>
     </div>
