@@ -3,9 +3,9 @@
     <div class="search_form my-2">
         <%= form_with url: myFavArtistLists_path, method: :get, local: true do |form| %>
         <div class="text-center mb-3">
-            <%= form.text_field :search ,size:25 ,placeholder: "吉幾三",class:"p-1 border-2 border-gray-400 mt-3 mb-5"%>
+            <%= form.text_field :search ,size:25 ,placeholder: "吉幾三",class:"p-1 border-2 border-gray-400 mt-3 mb-5", id:"search_form"%>
             <br>
-            <%= form.button 'アーティスト名検索', name: nil,class:"px-4 py-3 border-1 rounded-md bg-red-400 text-white", type: 'button', onclick: 'submit();', id: "search_btn" %>
+            <%= form.button 'アーティスト名検索', name: nil,class:"px-4 py-3 border-1 rounded-md bg-gray-200 text-white", type: 'button', onclick: 'submit();', id: "search_btn" %>
         </div>
         <% end %>
     </div>
@@ -34,3 +34,5 @@
     </div>
     <% end %>
 </main>
+
+<%= javascript_pack_tag 'seach_btn_check' %>
