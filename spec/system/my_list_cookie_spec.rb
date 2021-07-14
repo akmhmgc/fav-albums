@@ -7,21 +7,22 @@ RSpec.describe 'MyListCookie', type: :system do
       visit root_path
       fill_in 'search', with: 'Bz'
       find_by_id("search_btn").click
-      find('svg.svg-inline--fa', match: :first).click
+
+      find('svg.plus-activated', match: :first).click
       expect(page).to have_content 'アーティストが追加されました'
     end
 
-    fit "アーティストが5組いると追加されない" , js: true do
-      # ５組のアーティストの追加
+    fit "アーティストが5組いると追加されない", js: true do
+      # ５組のアーティストの追加find('svg.svg-inline--fa', match: :first).click
       visit root_path
       fill_in 'search', with: 'Bz'
-      5.times do 
-        find_by_id("search_btn").click
+      find_by_id("search_btn").click
+      5.times do
+        find('svg.plus-activated', match: :first).click
+        expect(page).to have_content 'アーティストが追加されました'
       end
-      expect(page).to have_content 'アーティストが追加されました'
-    end
-
-    it "既にいるアーティストは追加されない" do
+      find('svg.plus-activated', match: :first).click
+      expect(page).to have_content "追加するためにはリストからアーティストを１組削除してください。"
     end
   end
 end
