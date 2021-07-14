@@ -1,7 +1,6 @@
 require 'rails_helper'
 
 RSpec.describe 'MyListCookie', type: :system do
-  let(:session) { ActionDispatch::Request.empty.session }
   describe "アーティストの追加" do
     it "リンクを踏むとアーティストが追加される", js: true do
       visit root_path
@@ -12,7 +11,7 @@ RSpec.describe 'MyListCookie', type: :system do
       expect(page).to have_content 'アーティストが追加されました'
     end
 
-    fit "アーティストが5組いると追加されない", js: true do
+    it "アーティストが5組いると追加されない", js: true do
       # ５組のアーティストの追加find('svg.svg-inline--fa', match: :first).click
       visit root_path
       fill_in 'search', with: 'Bz'
