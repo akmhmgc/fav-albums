@@ -46,7 +46,6 @@ class FavoriteArtistsController < ApplicationController
 
   private
 
-  # フラッシュメッセージの場所は関数の内側に持ってきていいのか？
   def add_artist_to_mylist(artist_hash)
     # session[:my_artists_list]が存在しない場合、空の配列を代入
     session[:my_artists_list] = [] unless session[:my_artists_list]
