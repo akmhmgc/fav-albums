@@ -1,4 +1,7 @@
 <main class="max-w-screen-lg mx-auto px-4 md:px-12 relative pb-6 pt-4">
+    <div class="iamge mb-5">
+        <%= image_tag "https://my-fav-artists.s3.amazonaws.com/uploads/my_list/image/26/mini_magick20210715-30194-1t8wdcc.jpeg" %>
+    </div>
     <h2 class="text-xl text-center font-semibold">好きなアーティストを5組選びましょう！</h2>
     <div class="search_form my-2">
         <%= form_with url: myFavArtistLists_path, method: :get, local: true do |form| %>
