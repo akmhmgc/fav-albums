@@ -24,7 +24,7 @@ module MyArtistsConverter
       return false
     end
 
-    # 名前が10文字以内かどうか
+    # アーティストが5人かどうか
     unless images_list.length == 5
       @error = "アーティストの数が正しくありません。"
       return false

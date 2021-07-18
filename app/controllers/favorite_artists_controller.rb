@@ -29,7 +29,9 @@ class FavoriteArtistsController < ApplicationController
     image_urls = session[:my_artists_list].map { |artist| artist["image_url"] }
     artist_names = session[:my_artists_list].map { |artist| artist["name"] }
 
-    if can_save_image_from_mylist?(name, image_urls) && can_save_artist_names?(artist_names)
+    # can_save_image_from_mylistのみが業務エラーをチェックする
+    # sessionに含まれるアーティストが5名かどうかはシステムで発生するエラーなのでifでfalseが返ったら redirectってのは違う
+    if can_save_image_from_mylist?(name, image_urls)
       @my_list = MyList.create!(nickname: name, image: @image)
       @uid = @my_list.to_param
 
@@ -63,13 +65,5 @@ class FavoriteArtistsController < ApplicationController
 
   def delete_artist_from_mylist(artist_hash)
     session[:my_artists_list].delete_if { |hash| hash["id"] == artist_hash["id"] }
-  end
-
-  def can_save_artist_names?(names_array)
-    return true if names_array.length == 5
-
-    @error = "アーティスト名が正しく取得されていません。"
-
-    false
   end
 end
