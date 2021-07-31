@@ -44,4 +44,6 @@ yarn-debug.log*
 !bg.jpg
 !no_image.png
 
+/db/mysql_data
+
 /public/uploads/*
