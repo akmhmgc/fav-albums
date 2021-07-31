@@ -12,15 +12,15 @@
 
 ActiveRecord::Schema.define(version: 2021_07_10_140332) do
 
-  create_table "artists", force: :cascade do |t|
+  create_table "artists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name"
-    t.integer "my_list_id", null: false
+    t.bigint "my_list_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["my_list_id"], name: "index_artists_on_my_list_id"
   end
 
-  create_table "my_lists", force: :cascade do |t|
+  create_table "my_lists", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "public_uid"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
