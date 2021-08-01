@@ -14,7 +14,7 @@ RUN bundle config --local set path 'vendor/bundle' \
 
 COPY compile.sh /compile.sh
 RUN chmod 744 /compile.sh
-RUN "/compile.sh"
+RUN /compile.sh
 
 EXPOSE 3000
 CMD bundle exec rails s -p ${PORT:-3000} -b 0.0.0.0
