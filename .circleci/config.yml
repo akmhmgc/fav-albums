@@ -28,6 +28,7 @@ jobs:
       BUNDLE_RETRY: "3"
       APP_DATABASE_HOST: "127.0.0.1"
       RAILS_ENV: test
+      SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub 
     working_directory: ~/fav-albums
     steps:
       - checkout:
