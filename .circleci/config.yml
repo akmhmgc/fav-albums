@@ -50,8 +50,6 @@ jobs:
   deploy:
     docker:
       - image: circleci/ruby:2.7-node
-    environment:
-      RAILS_MASTER_KEY: $RAILS_MASTER_KEY
     steps:
       - checkout
       - setup_remote_docker:
@@ -61,9 +59,6 @@ jobs:
       - run:
           name: heroku login
           command: heroku container:login
-      - run:
-          name: ehco RAILS_MASTER_KEY
-          command: echo $RAILS_MASTER_KEY
       - run:
           name: push docker image
           command: heroku container:push web -a $HEROKU_APP_NAME
