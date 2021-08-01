@@ -5,17 +5,17 @@
 ## URL
 [Share my favs](https://my-fab-artists.herokuapp.com/myFavArtistLists)
 ## 使用技術
-- Ruby 2.6.6
-- Ruby on Rails 6.0.3
-- PostgreSQL
+- Ruby 2.7.4
+- Ruby on Rails 6.0.4
+- MySQL(本番環境は5.5.62、docker環境では8.0を使用)
 - JavaScript
 - Tailwind CSS
 - RSpec
 - Git, GitHub
 - Rubocop
 - SpotifyAPI(wrapperのrspotify gemを使用)
-- Heroku
-- Dockerを使用したデプロイ
+- Heroku Container Registry
+- Docker
 
 ## 機能一覧
 - アーティストの検索(APIを使用)
