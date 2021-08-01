@@ -17,4 +17,4 @@ RUN chmod 744 /compile.sh
 RUN /bin/sh -c "/compile.sh"
 
 EXPOSE 3000
-CMD [ "bundle", "exec", "rails","server" ,"-b" ,"0.0.0.0"]
+CMD bundle exec rails s -p ${PORT:-3000} -b 0.0.0.0
