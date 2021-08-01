@@ -51,7 +51,7 @@ jobs:
     docker:
       - image: circleci/ruby:2.7-node
     environment:
-      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
+      RAILS_MASTER_KEY: $RAILS_MASTER_KEY
     steps:
       - checkout
       - setup_remote_docker:
