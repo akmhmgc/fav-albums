@@ -12,7 +12,9 @@ COPY . /app
 RUN bundle config --local set path 'vendor/bundle' \
   && bundle install
 
-# 権限を与えてシェルスクリプトを実行する
-COPY start.sh /start.sh
-RUN chmod 744 /start.sh
-CMD [ "sh", "/start.sh"]
+COPY compile.sh /compile.sh
+RUN chmod 744 /compile.sh
+RUN /bin/sh -c "/compile.sh"
+
+EXPOSE 3000
+CMD [ "bundle", "exec", "rails","server" ,"-b" ,"0.0.0.0"]
