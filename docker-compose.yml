@@ -15,7 +15,6 @@ services:
     ports:
       - "4000:3000"
     environment:
-      RAILS_MASTER_KEY: ${RAILS_MASTER_KEY}
       RAILS_ENV: development
       SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub 
     depends_on:
