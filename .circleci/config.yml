@@ -50,13 +50,12 @@ jobs:
   deploy:
     docker:
       - image: circleci/ruby:2.7-node
-    environment:
-      RAILS_MASTER_KEY: $RAILS_MASTER_KEY
     steps:
       - checkout
       - setup_remote_docker:
           version: 19.03.13
       - heroku/install
+      - run: echo $RAILS_MASTER_KEY
       - run:
           name: heroku login
           command: heroku container:login
