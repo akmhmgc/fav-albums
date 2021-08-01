@@ -11,3 +11,10 @@ WORKDIR /app
 COPY . /app
 RUN bundle config --local set path 'vendor/bundle' \
   && bundle install
+
+COPY compile.sh /compile.sh
+RUN chmod 744 /compile.sh
+RUN /bin/sh -c "/compile.sh"
+
+EXPOSE 3000
+CMD bundle exec rails s -p ${PORT:-3000} -b 0.0.0.0
