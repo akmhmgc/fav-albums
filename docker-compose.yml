@@ -16,5 +16,11 @@ services:
       - "3000:3000"
     environment:
       RAILS_ENV: development
+      SELENIUM_DRIVER_URL: http://chrome:4444/wd/hub 
     depends_on:
       - db
+  chrome:
+    image: selenium/standalone-chrome:latest
+    shm_size: 256m
+    ports:
+      - 4444:4444
