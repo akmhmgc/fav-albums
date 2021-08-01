@@ -7,7 +7,7 @@
 ## 使用技術
 - Ruby 2.7.4
 - Ruby on Rails 6.0.4
-- MySQL(本番環境は5.5.62、docker環境では8.0を使用)
+- MySQL(本番環境は5.5.62、ローカルでは8.0を使用)
 - JavaScript
 - Tailwind CSS
 - RSpec
