@@ -16,6 +16,7 @@
 - SpotifyAPI(wrapperのrspotify gemを使用)
 - Heroku Container Registry
 - Docker
+- CircleCI(CI/CD)
 
 ## 機能一覧
 - アーティストの検索(APIを使用)
