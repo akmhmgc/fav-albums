@@ -49,7 +49,7 @@ jobs:
 
   deploy:
     docker:
-      - image: circleci/ruby:2.7
+      - image: circleci/ruby:2.7-node
     steps:
       - checkout
       - setup_remote_docker:
@@ -76,9 +76,9 @@ workflows:
       - test:
           requires:
             - build
-      # - deploy:
-      #     requires:
-      #       - test
-      #     filters:
-      #       branches:
-      #         only: master
+      - deploy:
+          requires:
+            - test
+          filters:
+            branches:
+              only: master
