@@ -51,7 +51,7 @@ group :test do
   gem "factory_bot_rails"
   gem 'faker'
   gem 'rspec-rails'
-  gem 'webdrivers'
+  gem 'webdrivers', require: !ENV['SELENIUM_DRIVER_URL']
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

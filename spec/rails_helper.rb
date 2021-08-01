@@ -30,6 +30,23 @@ rescue ActiveRecord::PendingMigrationError => e
   puts e.to_s.strip
   exit 1
 end
+
+# capybaraの設定
+Capybara.register_driver :remote_chrome do |app|
+  url = ENV['SELENIUM_DRIVER_URL']
+  caps = ::Selenium::WebDriver::Remote::Capabilities.chrome(
+    'goog:chromeOptions' => {
+      'args' => [
+        'no-sandbox',
+        'headless',
+        'disable-gpu',
+        'window-size=1680,1050'
+      ]
+    }
+  )
+  Capybara::Selenium::Driver.new(app, browser: :remote, url: url, desired_capabilities: caps)
+end
+
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -62,13 +79,13 @@ RSpec.configure do |config|
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
 
-  config.before(:each) do |example|
-    if example.metadata[:type] == :system
-      if example.metadata[:js]
-        driven_by :selenium_chrome_headless, screen_size: [1400, 600]
-      else
-        driven_by :rack_test
-      end
-    end
+  config.before(:each, type: :system) do
+    driven_by :rack_test
+  end
+
+  config.before(:each, type: :system, js: true) do
+    Capybara.server_host = IPSocket.getaddress(Socket.gethostname)
+    Capybara.app_host = "http://#{Capybara.server_host}"
+    driven_by :remote_chrome
   end
 end
