@@ -8,7 +8,7 @@ RSpec.describe 'MyListCookie', type: :system do
       find_by_id("search_btn").click
 
       find('svg.plus-activated', match: :first).click
-      expect(page).to have_content 'アーティストが追加されました'
+      expect(find("#flash")).to have_content 'アーティストが追加されました'
     end
 
     it "アーティストが5組いると追加されない", js: true do
@@ -21,7 +21,7 @@ RSpec.describe 'MyListCookie', type: :system do
         expect(page).to have_content 'アーティストが追加されました'
       end
       find('svg.plus-activated', match: :first).click
-      expect(page).to have_content "追加するためにはリストからアーティストを１組削除してください。"
+      expect(find("#flash")).to have_content "追加するためにはリストからアーティストを１組削除してください。"
     end
   end
 end
