@@ -4,7 +4,7 @@
     </div>
     <h2 class="text-xl text-center font-semibold">好きなアーティストを5組選びましょう！</h2>
     <div class="search_form my-2">
-        <%= form_with url: myFavArtistLists_path, method: :get, local: true do |form| %>
+        <%= form_with url: artists_path, method: :get, local: true do |form| %>
         <div class="text-center mb-3">
             <%= form.text_field :search ,size:25 ,placeholder: "吉幾三",class:"p-1 border-2 border-gray-400 mt-3 mb-5", id:"search_form"%>
             <br>
@@ -18,7 +18,7 @@
             <%= render partial: "artists/added_artist", collection: session[:my_artists_list], as: "artist"%>
         </div>
 
-        <%= form_with url: render_image_favorite_artists_path, method: :post, local: true do |form| %>
+        <%= form_with url: render_image_mylist_path, method: :post, local: true do |form| %>
         <br>
         <div class="text-center">
             <%= form.text_field :name ,size:25, placeholder: "ニックネーム（10文字以内）",class:"p-1 border-2 border-gray-400 mt-3"%>
