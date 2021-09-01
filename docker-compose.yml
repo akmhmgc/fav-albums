@@ -20,6 +20,8 @@ services:
     depends_on:
       - db
       - chrome
+    stdin_open: true
+    tty: true
   chrome:
     image: selenium/standalone-chrome:latest
     shm_size: 256m
