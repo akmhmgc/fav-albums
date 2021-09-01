@@ -38,7 +38,7 @@ class MylistsController < ApplicationController
       end
 
       session[:my_artists_list].clear
-      redirect_to myFavArtistList_path(@uid), flash: { notice: "画像が作成されました！" }
+      redirect_to favorite_artist_list_path(@uid), flash: { notice: "画像が作成されました！" }
     else
       redirect_to artists_path, flash: { alert: @error }
     end
