@@ -18,7 +18,7 @@
             <%= render partial: "artists/added_artist", collection: session[:my_artists_list], as: "artist"%>
         </div>
 
-        <%= form_with url: render_image_favorite_artists_path, method: :post, local: true do |form| %>
+        <%= form_with url: render_image_mylist_path, method: :post, local: true do |form| %>
         <br>
         <div class="text-center">
             <%= form.text_field :name ,size:25, placeholder: "ニックネーム（10文字以内）",class:"p-1 border-2 border-gray-400 mt-3"%>
