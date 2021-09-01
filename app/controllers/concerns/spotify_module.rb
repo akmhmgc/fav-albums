@@ -11,6 +11,11 @@ module SpotifyModule
 
   private
 
+  def search_artsits(artist_name)
+    RSpotify::Artist.search(artist_name).map { |artist| spotify_to_hash(artist) }.compact
+  end
+
+  # indexで表示するために必要な情報を成形
   def spotify_to_hash(spotify_instance)
     return unless spotify_instance.images.any?
 

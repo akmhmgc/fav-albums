@@ -4,7 +4,6 @@ class ArtistsController < ApplicationController
   def index
     return if params[:search].blank?
 
-    searchartists_array = RSpotify::Artist.search(params[:search]).map { |artist| spotify_to_hash(artist) }.compact
-    @searchartists = Kaminari.paginate_array(searchartists_array).page(params[:page]).per(10)
+    @searchartists = Kaminari.paginate_array(search_artsits(params[:search])).page(params[:page]).per(10)
   end
 end
