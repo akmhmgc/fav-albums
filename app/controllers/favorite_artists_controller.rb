@@ -4,11 +4,11 @@ class FavoriteArtistsController < ApplicationController
     @artist = params.require(:artist_info).permit(:id, :name, :image_url).to_h.with_indifferent_access
     if add_artist_to_mylist(@artist)
       respond_to do |format|
-        format.html { redirect_to myFavArtistLists_path, flash[:notice] = "アーティストが追加されました。" }
+        format.html { redirect_to artists_path, flash[:notice] = "アーティストが追加されました。" }
         format.js { flash.now[:notice] = "アーティストが追加されました。" }
       end
     else
-      redirect_to myFavArtistLists_path, flash: { alert: @error_msg }
+      redirect_to artists_path, flash: { alert: @error_msg }
     end
   end
 
@@ -16,11 +16,11 @@ class FavoriteArtistsController < ApplicationController
     @artist = params.require(:artist_info).permit(:id, :name, :image_url).to_h.with_indifferent_access
     if delete_artist_from_mylist(@artist)
       respond_to do |format|
-        format.html { redirect_to myFavArtistLists_path, flash[:notice] = "アーティストが削除されました。" }
+        format.html { redirect_to artists_path, flash[:notice] = "アーティストが削除されました。" }
         format.js { flash.now[:notice] = "アーティストが削除されました。" }
       end
     else
-      redirect_to myFavArtistLists_path, flash: { alert: "アーティストの削除に失敗しました。" }
+      redirect_to artists_path, flash: { alert: "アーティストの削除に失敗しました。" }
     end
   end
 
@@ -40,7 +40,7 @@ class FavoriteArtistsController < ApplicationController
       session[:my_artists_list].clear
       redirect_to myFavArtistList_path(@uid), flash: { notice: "画像が作成されました！" }
     else
-      redirect_to myFavArtistLists_path, flash: { alert: @error }
+      redirect_to artists_path, flash: { alert: @error }
     end
   end
 
