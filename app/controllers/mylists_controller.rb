@@ -25,20 +25,21 @@ class MylistsController < ApplicationController
   end
 
   def render_image
-    name = params[:name]
+    nickname = params[:name]
     image_urls = session[:my_artists_list].map { |artist| artist["image_url"] }
     artist_names = session[:my_artists_list].map { |artist| artist["name"] }
 
-    if can_save_image_from_mylist?(name, image_urls) && can_save_artist_names?(artist_names)
-      @my_list = MyList.create!(nickname: name, image: @image)
-      @uid = @my_list.to_param
+    if can_save_image_from_mylist?(nickname, image_urls)
+      image = rendered_image(nickname, image_urls)
+      @my_list = MyList.create!(nickname: nickname, image: image)
+      uid = @my_list.to_param
 
       artist_names.each do |artist_name|
         @my_list.artists.create!(name: artist_name)
       end
 
       session[:my_artists_list].clear
-      redirect_to favorite_artist_list_path(@uid), flash: { notice: "画像が作成されました！" }
+      redirect_to favorite_artist_list_path(uid), flash: { notice: "画像が作成されました！" }
     else
       redirect_to artists_path, flash: { alert: @error }
     end
@@ -64,13 +65,5 @@ class MylistsController < ApplicationController
 
   def delete_artist_from_mylist(artist_hash)
     session[:my_artists_list].delete_if { |hash| hash["id"] == artist_hash["id"] }
-  end
-
-  def can_save_artist_names?(names_array)
-    return true if names_array.length == 5
-
-    @error = "アーティスト名が正しく取得されていません。"
-
-    false
   end
 end

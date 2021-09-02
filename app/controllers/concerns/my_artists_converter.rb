@@ -21,23 +21,25 @@ module MyArtistsConverter
     # 名前が10文字以内かどうか
     unless name && name.length >= 1 && name.length <= 10
       @error = "ニックネームの文字数が正しくありません。"
-      return false
+      false
     end
 
-    # 名前が10文字以内かどうか
+    # アーティストの数が5名がどうか
     unless images_list.length == 5
       @error = "アーティストの数が正しくありません。"
-      return false
+      false
     end
-
-    @image = MiniMagick::Image.open("app/assets/images/bg.jpg")
-    @image_width = (@image.width - BORDER_WIDTH * 8) / 5
-    add_name_title(name)
-    add_artists(images_list)
+    true
   end
 
-  def add_name_title(name)
-    @image.combine_options do |config|
+  def rendered_image(name, images_list)
+    image = MiniMagick::Image.open("app/assets/images/bg.jpg")
+    image = add_name_title(name, image)
+    add_artists(images_list, image)
+  end
+
+  def add_name_title(name, image)
+    image.combine_options do |config|
       # nickname
       config.font NAME_FONT
       config.gravity GRAVITY
@@ -51,19 +53,22 @@ module MyArtistsConverter
       sentence2 = "構成する５組のアーティスト".force_encoding('UTF-8')
       config.draw "text #{TITLE_POSITION} '#{sentence2}'"
     end
+    image
   end
 
-  def add_artists(images_list)
-    images_list.each_with_index do |image_url, index|
+  def add_artists(url_list, image)
+    image_width = (image.width - BORDER_WIDTH * 8) / 5
+    url_list.each_with_index do |image_url, index|
       # 追加する画像の整形
-      image = MiniMagick::Image.open(image_url)
-      image.resize "#{@image_width}x"
-      image.crop "#{@image_width}x#{@image_width}+0+0"
+      artist_image = MiniMagick::Image.open(image_url)
+      artist_image.resize "#{image_width}x"
+      artist_image.crop "#{image_width}x#{image_width}+0+0"
 
-      @image = @image.composite(image) do |c|
+      image = image.composite(artist_image) do |c|
         c.compose "Over"
-        c.geometry "+#{BORDER_WIDTH * 2 + index * (@image_width + BORDER_WIDTH)}+#{IMAGE_Y_POSITION}"
+        c.geometry "+#{BORDER_WIDTH * 2 + index * (image_width + BORDER_WIDTH)}+#{IMAGE_Y_POSITION}"
       end
     end
+    image
   end
 end
