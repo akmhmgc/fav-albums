@@ -47,18 +47,19 @@ class MylistsController < ApplicationController
   private
 
   def add_artist_to_mylist(artist_hash)
-    # session[:my_artists_list]が存在しない場合、空の配列を代入
     session[:my_artists_list] ||= []
 
     if session[:my_artists_list].count >= 5
       @error_msg = "追加するためにはリストからアーティストを１組削除してください。"
-      false
-    elsif session[:my_artists_list].include?(artist_hash)
-      @error_msg = "既にアーティストは追加されています。"
-      false
-    else
-      session[:my_artists_list] << artist_hash
+      return false
     end
+
+    if session[:my_artists_list].include?(artist_hash)
+      @error_msg = "既にアーティストは追加されています。"
+      return false
+    end
+
+    session[:my_artists_list] << artist_hash
   end
 
   def delete_artist_from_mylist(artist_hash)
