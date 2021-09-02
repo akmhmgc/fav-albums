@@ -25,20 +25,21 @@ class MylistsController < ApplicationController
   end
 
   def render_image
-    name = params[:name]
+    nickname = params[:name]
     image_urls = session[:my_artists_list].map { |artist| artist["image_url"] }
     artist_names = session[:my_artists_list].map { |artist| artist["name"] }
 
-    if can_save_image_from_mylist?(name, image_urls) && can_save_artist_names?(artist_names)
-      @my_list = MyList.create!(nickname: name, image: @image)
-      @uid = @my_list.to_param
+    if can_save_image_from_mylist?(nickname, image_urls)
+      image = rendered_image(nickname, image_urls)
+      @my_list = MyList.create!(nickname: nickname, image: image)
+      uid = @my_list.to_param
 
       artist_names.each do |artist_name|
         @my_list.artists.create!(name: artist_name)
       end
 
       session[:my_artists_list].clear
-      redirect_to favorite_artist_list_path(@uid), flash: { notice: "画像が作成されました！" }
+      redirect_to favorite_artist_list_path(uid), flash: { notice: "画像が作成されました！" }
     else
       redirect_to artists_path, flash: { alert: @error }
     end
@@ -47,29 +48,22 @@ class MylistsController < ApplicationController
   private
 
   def add_artist_to_mylist(artist_hash)
-    # session[:my_artists_list]が存在しない場合、空の配列を代入
     session[:my_artists_list] ||= []
 
     if session[:my_artists_list].count >= 5
       @error_msg = "追加するためにはリストからアーティストを１組削除してください。"
-      false
-    elsif session[:my_artists_list].include?(artist_hash)
-      @error_msg = "既にアーティストは追加されています。"
-      false
-    else
-      session[:my_artists_list] << artist_hash
+      return false
     end
+
+    if session[:my_artists_list].include?(artist_hash)
+      @error_msg = "既にアーティストは追加されています。"
+      return false
+    end
+
+    session[:my_artists_list] << artist_hash
   end
 
   def delete_artist_from_mylist(artist_hash)
     session[:my_artists_list].delete_if { |hash| hash["id"] == artist_hash["id"] }
-  end
-
-  def can_save_artist_names?(names_array)
-    return true if names_array.length == 5
-
-    @error = "アーティスト名が正しく取得されていません。"
-
-    false
   end
 end
